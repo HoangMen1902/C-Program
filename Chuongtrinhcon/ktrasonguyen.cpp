@@ -12,12 +12,14 @@ int main(){
     } else {
         printf("x khong phai la so nguyen\n");
     }
-    if( x == 0 || x == 1 ){ // Tim so nguyen to
+     // Tim so nguyen to
+    if( x == 0 || x == 1 ){
         printf("x khong phai la so nguyen to\n");
     } else {
         for (int i = 2; i < x; i++){
             if ( x % i == 0 ){
                 count++;
+                break;
             }
         }
         if ( count == 0){
@@ -25,7 +27,7 @@ int main(){
         } else {
             printf("x khong phai la so nguyen to\n");
         }
-    }
+    } // Ket thuc tim so nguyen to
     count = 0;
     for (int i = 0; i < x; i++){
         if ( i * i == x ){
