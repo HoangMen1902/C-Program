@@ -1,19 +1,55 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+//TIM UOC CHUNG LON NHAT
 int TimUoc(int x, int y){
 	if ( y == 0 ) return x;
 	return TimUoc(y, x % y); //de quy tim uoc
 }
+//TINH TIEN DIEN
+int TienDien(int kwh){
+	int tien;
+    if(kwh <= 50 ){
+        tien = kwh * 1678;
+    }else if (  kwh > 50 && kwh <= 100 ){
+        tien = 50 * 1678 + (kwh - 50) * 1734;
+    } else if ( kwh > 100 && kwh <=200){
+        tien = 50 * 1678 + 50 * 1734 + (kwh - 100) * 2014;
+    } else if ( kwh > 200 && kwh <= 300){
+        tien = 50 * 1678 + 50 * 1734 + 100 * 2014 + (kwh - 100) * 2536;
+    } else if ( kwh > 300 && kwh <=400 ){
+        tien = 50 * 1678 + 50 * 1734 + 100 * 2014 + 100 * 2536 + (kwh - 100) *2834;
+    }else {
+        tien = 50 * 1678 + 50 * 1734 + 100 * 2014 + 100 * 2536 + 100 * 2834 + ( kwh - 100) * 2927;
+    }
+    return tien;
+}
+//Tinh tien karaoke
+int kara(int giobatdau, int gioketthuc){
+	int tien;
+	int sogio = gioketthuc - giobatdau;
+    if (sogio <= 3){
+        tien = sogio * 150000;
+    } else {
+        tien = 3 * 150000 + (sogio - 3) * 150000 * 0.7;
+    }
+    if(giobatdau >= 14 && giobatdau <= 17) {
+        tien = tien * 0.9;
+    }
+    return tien;
 
+}
 int main(){
+	int giobatdau, gioketthuc;
+	int kwh;
 	int x,y;
 	int count = 0;
 	printf("Chao mung ban den voi bai ASM mon Nhap mon lap trinh!\n");
 	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++\n");	
 	printf("+ 1. Chuong trinh kiem tra so nguyen	            +\n");
 	printf("+ 2. Chuong trinh tim uoc so chung cua 2 so         +\n");
-	printf("+ 3. Chuong trinh tinh phuong trinh bac 1           +\n");	
+	printf("+ 3. Chuong trinh tinh tien karaoke                 +\n");	
+	printf("+ 4. Chuong trinh tinh tien dien                    +\n");
+	printf("+ 5. Chuc nang doi tien                             +\n");		
 	printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++\n");
 	printf("Moi ban chon chuong trinh: ");
 	
@@ -68,7 +104,26 @@ int main(){
 			printf("Boi chung nho nhat la: %d\n", x*y/TimUoc(x,y)); //cong thuc tinh boi chung
 			break;
 		case 3:
-            break;
+			system("cls");
+			do{
+				printf("Hay nhap gio bat dau: ");
+				scanf("%d",&giobatdau);
+				printf("Hay nhap gio ket thuc: ");
+				scanf("%d",&gioketthuc);
+				if(gioketthuc<giobatdau || gioketthuc>23 || giobatdau<12){
+				printf("Gio khong hop le, Xin hay nhap lai\n");
+			}
+			}while(gioketthuc<giobatdau || gioketthuc>23 || giobatdau<12);
+			kara(giobatdau,gioketthuc);
+			printf("So tien phai tra la: %d",kara(giobatdau,gioketthuc));
+			break;
+		case 4:
+			system("cls");
+			printf("Hay nhap vao gia tri dien: ");
+    		scanf("%d", &kwh);
+			TienDien(kwh);
+			printf("Tien dien can phai tra la: %d", TienDien(kwh));
+			break;
 	}
 	return 0;
 }
