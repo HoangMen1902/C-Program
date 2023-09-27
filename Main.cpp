@@ -19,7 +19,7 @@ int TienDien(int kwh){
     }else if(kwh>300 && kwh<=400){
         tiendien = Bac1 * 1678 + 50 * 1734 + 100 * 2014 + 100 * 2536 + (kwh - Bac4)*2834; 
     }else if(kwh>400){
-        tiendien = Bac1 * 1678 + 50 * 1734 + 100 * 2014 + 100 * 2536 + 100 * 2834 + (kwh - Bac5) *2927;
+        tiendien = Bac1 * 1678 + 50 * 1734 + 100 * 2014 + 100 * 2536 + 100 * 2834 + (kwh - Bac5) *292;
     }
 	return tiendien;
 }
