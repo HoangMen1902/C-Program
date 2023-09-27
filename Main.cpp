@@ -1,5 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>// -------------------------------------TIM UOC CHUNG LON NHAT --------------------------------
+#include <stdlib.h>
+// -------------------------------------TIM UOC CHUNG LON NHAT --------------------------------
 int TimUoc(int x, int y){
 	if ( y == 0 ) return x;
 	return TimUoc(y, x % y); //de quy tim uoc
@@ -128,7 +129,7 @@ int main(){
 			kara(giobatdau,gioketthuc);
 			printf("So tien phai tra la: %d",kara(giobatdau,gioketthuc));
 			break;
-			// -------------------------CASE 5 ----------
+			// -------------------------CASE 4 ----------
 		case 4:
 			system("cls");
 			printf("Hay nhap vao gia tri dien: ");
