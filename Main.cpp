@@ -27,6 +27,32 @@ bool KiemTraSoChinhPhuong(int x){
 int TimUoc(int x, int y){
 	if ( y == 0 ) return x;
 	return TimUoc(y, x % y); //de quy tim uoc
+	// con 1 cach nua la viet vong lap while loop:
+
+/* 	int main(){
+    int temp,x,y;
+	printf("Hay nhap x: ");
+	scanf("%d",&x);
+	printf("Hay nhap y: ");
+	scanf("%d",&y);
+	if( y > x ){
+
+		temp = y;
+		y = x;
+		x = temp;
+	}
+
+    do{ //su dung vong lap 
+        temp = x % y;
+        x = y;
+        y = temp;
+    }while(x % y != 0);
+
+	printf("UCLN la: %d",temp);
+
+    return 0;
+
+} */
 }
 //---------------------------------------TINH TIEN DIEN----------------------------------
 int TienDien(int kwh){
@@ -62,14 +88,13 @@ int kara(int giobatdau, int gioketthuc){
     return tien;
 
 }
-// -------------------------- CHUC NANG DOI TIEN --------------------------------
 //--------------------------- HAM MAIN ------------------------------------------
 
 int main(){
 	int giobatdau, gioketthuc;
 	int kwh;
 
-	Batdau:
+	Begin:
 		system("cls");
 		printf("Chao mung ban den voi bai ASM mon Nhap mon lap trinh!\n");
 		printf("+++++++++++++++++++++++++++++++++++++++++++++++++++++\n");	
@@ -83,14 +108,14 @@ int main(){
 	int luaChon;
 	scanf("%d",&luaChon);
 	if (luaChon > 5 || luaChon < 1){
-		goto Batdau;
+		goto Begin;
 	}
 	//-------------------------------- SWITCH CASE -----------------------
 	switch(luaChon){ 
 		// CASE ONE: --------------------------------
 		case 1:{
 			float x;
-			system("cls");
+			/* system("cls"); */ //Comment lai de chup hinh output
 			printf("Hay nhap vao 1 gia tri x: ");
 			scanf("%f",&x);
 			if(KiemTraSoNguyen(x) == true){
@@ -122,7 +147,7 @@ int main(){
 			// -------- CASE 2 -------
 		case 2:{
 			int x,y;
-			system("cls");
+			/* system("cls"); */
 			printf("Hay nhap gia tri cua x: ");
 			scanf("%d", &x);
 			printf("Hay nhap gia tri cua y: ");
@@ -133,7 +158,7 @@ int main(){
 			}
 			// ------------- CASE 3 ---------------------
 		case 3:
-			system("cls");
+			/* system("cls"); */
 			do{
 				printf("Hay nhap gio bat dau: ");
 				scanf("%d",&giobatdau);
@@ -149,7 +174,7 @@ int main(){
 			break;
 			// -------------------------CASE 4 ----------
 		case 4:
-			system("cls");
+			/* system("cls"); */
 			printf("Hay nhap vao gia tri dien: ");
     		scanf("%d", &kwh);
 			printf("Tien dien can phai tra la: %d", TienDien(kwh));
