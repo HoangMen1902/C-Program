@@ -24,17 +24,14 @@ bool KiemTraSoChinhPhuong(int x){
 	return false;
 }
 // -------------------------------------TIM UOC CHUNG LON NHAT --------------------------------
-int TimUoc(int x, int y){
+/* int TimUoc(int x, int y){
 	if ( y == 0 ) return x;
-	return TimUoc(y, x % y); //de quy tim uoc
+	return TimUoc(y, x % y); */ //de quy tim uoc
 	// con 1 cach nua la viet vong lap while loop:
 
-/* 	int main(){
-    int temp,x,y;
-	printf("Hay nhap x: ");
-	scanf("%d",&x);
-	printf("Hay nhap y: ");
-	scanf("%d",&y);
+	int TimUoc(int x, int y){
+    int temp;
+
 	if( y > x ){
 
 		temp = y;
@@ -48,11 +45,8 @@ int TimUoc(int x, int y){
         y = temp;
     }while(x % y != 0);
 
-	printf("UCLN la: %d",temp);
 
-    return 0;
-
-} */
+    return temp; 
 }
 //---------------------------------------TINH TIEN DIEN----------------------------------
 int TienDien(int kwh){
@@ -74,16 +68,18 @@ int TienDien(int kwh){
 	return tiendien;
 }
 //--------------------------------TINH TIEN KARAOKE----------------------------------------------------------------
-int kara(int giobatdau, int gioketthuc){
+int kara(int gbd, int gkt){
 	int tien;
-	int sogio = gioketthuc - giobatdau;
+	int sogio = gkt - gbd;
     if (sogio <= 3){
         tien = sogio * 150000;
     } else {
         tien = 3 * 150000 + (sogio - 3) * 150000 * 0.7;
+		printf("Ban da guoc giam 30 phan tram\n");
     }
-    if(giobatdau >= 14 && giobatdau <= 17) {
+    if(gbd >= 14 && gbd <= 17) {
         tien = tien * 0.9;
+		printf("Ban da guoc giam them 10 phan tram\n");
     }
     return tien;
 
@@ -91,9 +87,9 @@ int kara(int giobatdau, int gioketthuc){
 //--------------------------- HAM MAIN ------------------------------------------
 
 int main(){
-	int giobatdau, gioketthuc;
-	int kwh;
 
+
+// =================== MENU ================= 
 	Begin:
 		system("cls");
 		printf("Chao mung ban den voi bai ASM mon Nhap mon lap trinh!\n");
@@ -107,7 +103,7 @@ int main(){
 		printf("Moi ban chon chuong trinh: ");
 	int luaChon;
 	scanf("%d",&luaChon);
-	if (luaChon > 5 || luaChon < 1){
+	if (luaChon > 4 || luaChon < 1){
 		goto Begin;
 	}
 	//-------------------------------- SWITCH CASE -----------------------
@@ -125,19 +121,20 @@ int main(){
 				if(KiemTraSoNguyenTo(x) == true){
 					printf("X la so nguyen to\n");
 
-				} else{
+				} else {
 					printf("X khong phai la so nguyen to\n");
 				}
 				// If thu 2
 				if(KiemTraSoChinhPhuong(x) == true ){
 					printf("X la so chinh phuong");
+
 				}else{
 					printf("X khong phai la so chinh phuong");
 				}
 				// Ket thuc chuoi if else
 
 
-			} else{ //Else cua if dau tien
+			} else { //Else cua if dau tien
 				printf("X khong phai la so nguyen\n");
 				printf("X khong phai la so nguyen to\n");
 				printf("X khong phai la so chinh phuong\n");
@@ -159,22 +156,24 @@ int main(){
 			// ------------- CASE 3 ---------------------
 		case 3:
 			/* system("cls"); */
-			do{
+			int gbd, gkt;
+			Nhapgio:
 				printf("Hay nhap gio bat dau: ");
-				scanf("%d",&giobatdau);
+				scanf("%d",&gbd);
 				printf("Hay nhap gio ket thuc: ");
-				scanf("%d",&gioketthuc);
-				if(gioketthuc<giobatdau || gioketthuc>23 || giobatdau<12){
-				printf("Gio khong hop le, Xin hay nhap lai\n");
-			}
-			}while(gioketthuc<giobatdau || gioketthuc>23 || giobatdau<12); //Lap lai neu bi sai gio
+				scanf("%d",&gkt);
+			if(gkt<gbd || gkt>23 || gbd<12){
+				printf("Quan chi mo cua tu 12 - 23h, xin vui long nhap lai\n");
+				goto Nhapgio;
+			} //Lap lai neu bi sai gio
 
 
-			printf("So tien phai tra la: %d",kara(giobatdau,gioketthuc));
+			printf("So tien phai tra la: %d",kara(gbd,gkt));
 			break;
 			// -------------------------CASE 4 ----------
 		case 4:
 			/* system("cls"); */
+			int kwh;
 			printf("Hay nhap vao gia tri dien: ");
     		scanf("%d", &kwh);
 			printf("Tien dien can phai tra la: %d", TienDien(kwh));
